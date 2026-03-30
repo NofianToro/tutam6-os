@@ -20,10 +20,10 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    const char *packages[] = {"carikata", "urutkan", "sysfetch", "cmatrix", "htop-lite"};
+    const char *packages[] = {"carikata", "urutkan", "facman-get", "facman-rm", "facman-list"};
     int num_packages = 5;
 
-    printf("Facman Repository:\n");
+    printf("Facman Repository (NofianToro/tutam6-os):\n");
     for (int j = 0; j < num_packages; j++) {
         int is_installed = (access(packages[j], F_OK) != -1);
 

@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/wait.h>
+#include <ctype.h>
 
 void print_help() {
     printf("Usage: facman-get [options] {package}\n");
@@ -39,8 +40,19 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    char url[256];
-    sprintf(url, "https://raw.githubusercontent.com/fauzan/facman-repo/main/%s", package);
+    char folder[256];
+    if (strcmp(package, "carikata") == 0) strcpy(folder, "Carikata");
+    else if (strcmp(package, "urutkan") == 0) strcpy(folder, "Urutkan");
+    else if (strcmp(package, "facman-get") == 0) strcpy(folder, "Facman-Get");
+    else if (strcmp(package, "facman-rm") == 0) strcpy(folder, "Facman-Rm");
+    else if (strcmp(package, "facman-list") == 0) strcpy(folder, "Facman-List");
+    else {
+        strcpy(folder, package);
+        folder[0] = toupper((unsigned char)folder[0]);
+    }
+
+    char url[512];
+    sprintf(url, "https://raw.githubusercontent.com/NofianToro/tutam6-os/main/%s/%s", folder, package);
 
     pid_t pid = fork();
     if (pid == 0) {
